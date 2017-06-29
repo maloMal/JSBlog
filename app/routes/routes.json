@@ -1,5 +1,9 @@
 {
-    "index": "/index"
+    "index": "/index",
+    "home": "/",
+    "login": "/login",
+    "post": "/post",
+    "signup": "/signup",
     "create": "/create",
     "update": "/update",
     "delete": "/delete"

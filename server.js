@@ -4,7 +4,13 @@ var express = require("express"),
     bodyParser = require("body-parser"),
     hbs = require("hbs"),
     passport = require("passport"),
+    auth = require("./app/auth/passport-local"),
+    bcrypt = require("bcrypt-nodejs"),
+    User = require("./app/models/userModel"),
+    Post = require("./app/models/blogpostModel"),
     session = require("express-session"),
+    methodOverride = require("method-override"),
+    route = require("./app/routes/routes"),
     app = express();
 
 app.use(bodyParser.json());
@@ -22,8 +28,13 @@ app.use(session({
     saveUninitialized: true
 }));
 
+app.use(methodOverride('_method'));
+
 app.use(passport.initialize());
 app.use(passport.session());
+
+auth(passport);
+route(app, passport);
 
 //localAuth(passport);
 
